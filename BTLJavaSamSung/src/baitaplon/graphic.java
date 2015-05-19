@@ -1,4 +1,4 @@
-package baitaplon;
+ package baitaplon;
 
 import java.awt.Button;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,7 @@ public class graphic {
 		frame.setSize(500, 300);
 		frame.setLayout(null);
 		vdths = new Button("ve do thi ham so");
-		vdths.setBounds(30, 50, 150, 100);
+		vdths.setBounds(50, 50, 150, 100);
 		vdths.addActionListener(new ActionListener() {
 
 			@Override
@@ -30,7 +30,7 @@ public class graphic {
 		frame.add(vdths);
 		
 		kshs = new Button("khao sat ham so");
-		kshs.setBounds(30, 50, 150, 100);
+		kshs.setBounds(250, 50, 150, 100);
 		kshs.addActionListener(new ActionListener() {
 
 			@Override
