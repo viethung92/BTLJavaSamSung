@@ -1,10 +1,19 @@
 package baitaplon;
 
-public class khaosat {
+import javax.swing.JFrame;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class khaosat extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public khaosat(String s) {
+		// TODO Auto-generated constructor stub
 	}
+
+
+	
 
 }

@@ -8,6 +8,10 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 public abstract class mypanel extends JPanel implements MouseListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Graphics g;
 	public Color c=Color.black;
 	public float x=0,y=0;

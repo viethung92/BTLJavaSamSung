@@ -8,9 +8,10 @@ import javax.swing.JFrame;
 
 public class graphic {
 	public static myframe fm;
-	public static mypanel mp;
+	public static khaosat ks;
 	public static Button vdths, kshs;
 
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("khao sat & ve do thi");
 		frame.setSize(500, 300);
@@ -35,8 +36,8 @@ public class graphic {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mp = new mypanel("khao sat ham so");
-				mp.show();
+				ks = new khaosat("khao sat ham so");
+				ks.show();
 
 			}
 		});
