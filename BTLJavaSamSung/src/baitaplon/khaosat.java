@@ -121,13 +121,13 @@ public class khaosat extends JFrame {
 		tfb.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				b=Float.parseFloat(tfb.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -139,13 +139,13 @@ public class khaosat extends JFrame {
 		tfc.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				c=Float.parseFloat(tfc.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -158,13 +158,13 @@ public class khaosat extends JFrame {
 		tfd.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				d=Float.parseFloat(tfd.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -177,13 +177,13 @@ public class khaosat extends JFrame {
 		tfe.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e1) {
 				// TODO Auto-generated method stub
 				e=Float.parseFloat(tfe.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e1) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -196,13 +196,13 @@ public class khaosat extends JFrame {
 		tff.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				f=Float.parseFloat(tff.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -215,13 +215,13 @@ public class khaosat extends JFrame {
 		tfg.addFocusListener(new FocusListener() {
 			
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void focusLost(FocusEvent e) {
 				// TODO Auto-generated method stub
 				g=Float.parseFloat(tfg.getText());
 			}
 			
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -259,7 +259,7 @@ public class khaosat extends JFrame {
 		rf2.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				la.hide();
 				tfa.hide();
@@ -282,7 +282,7 @@ public class khaosat extends JFrame {
 		rf3.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				la.show();
 				tfa.show();
@@ -305,7 +305,7 @@ public class khaosat extends JFrame {
 		rf4.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				la.hide();
 				tfa.hide();
@@ -328,7 +328,7 @@ public class khaosat extends JFrame {
 		rf5.addActionListener(new ActionListener() {
 			
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				la.hide();
 				tfa.hide();
@@ -517,7 +517,7 @@ public class khaosat extends JFrame {
 						string+="ban da sai kieu ham so.";
 					else
 					{
-						string="                 Ham so:  y= "+a+"*x^4  +"+c+"x^2 +"+e+"\n";
+						string="Ham so:  y= "+a+"*x^4  +"+c+"x^2 +"+e+"\n";
 					    //tap xac dinh
 						string+="1) Tap xac dinh:\n    D=R\n";
 						//dao ham
@@ -565,11 +565,11 @@ public class khaosat extends JFrame {
 						{
 							if (a>0)
 							{
-								string+="     Ham so nghich bien tren: (-vo cung,0)\n     Ham so dong bien tren (0,+vo cung)\n";		
+								string+=" Ham so nghich bien tren: (-vo cung,0)\n     Ham so dong bien tren (0,+vo cung)\n";		
 							}
 							else
 							{
-								string+="     Ham so dong bien tren: (-vo cung,0)\n     Ham so nghich bien tren (0,+vo cung)\n";
+								string+=" Ham so dong bien tren: (-vo cung,0)\n     Ham so nghich bien tren (0,+vo cung)\n";
 							}
 						}
 						else
@@ -603,7 +603,7 @@ public class khaosat extends JFrame {
 						}
 						else
 						
-							string+="ham so bi suy bien thanh ham bac 1 tren bac nhat,\nde nghi ban chon ham bac 1 tren bac 1 de co ket qua dung\n";
+							string+="ham so bi suy bien thanh ham bac 1 tren bac nhat,\n de nghi ban chon ham bac 1 tren bac 1 de co ket qua dung\n";
 					}
 					else
 					{
@@ -696,7 +696,7 @@ public class khaosat extends JFrame {
 						}
 					}
 				}
-			//}
+			}
 			// ham bac nhat tren bac nhat
 			else if (rf5.isSelected())
 			{
