@@ -413,6 +413,8 @@ public class khaosat extends JFrame {
 					else
 					{
 						string="Ham so: y="+c+"*x^2	+"+d+"*x + "+e+"\n ";
+						//tap xac dinh
+						string+=" 1)  Tap xac dinh:\n      D=R\n";
 						
 					}
 				}
