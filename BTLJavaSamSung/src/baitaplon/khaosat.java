@@ -415,13 +415,424 @@ public class khaosat extends JFrame {
 						string="Ham so: y="+c+"*x^2	+"+d+"*x + "+e+"\n ";
 						//tap xac dinh
 						string+=" 1)  Tap xac dinh:\n      D=R\n";
+						//dao ham
+						string+=" 2)  Dao ham bac nhat: \n      y'="+ 2*c+"*x  +"+d+"\n";
+						//cuc tri va bien thien
+						float a2 =-d/(2*c); //toa do x cua cuc tri
+						float y;            //toa do y cua cuc tri
+						y=c*(a2)*(a2)+d*(a2)+e;
 						
+						if (c>0)
+						{
+							string+=" 3)  Diem cuc tieu la nghiem cua phuong trinh: y'=0\n        => la diem A("+a2+","+ y+")\n";
+							string+=" 4)  Khoang dong bien va nghich bien:\n      Nghich bien tren khoang (-vo cung, "+a2+")\n      Dong bien tren khoang     ("+a2+",+vocung)";
+						}
+						if (c<0)
+						{
+						    string+=" 3)  Diem cuc dai la nghiem cua phuong trinh: y'=0\n        => la diem A("+a2+","+ y+")\n";
+							string+=" 4)  Khoang dong bien va nghich bien:\n      Dong bien tren khoang     ("+a2+",+vo cung)\n      Nghich bien tren khoang (-vo cung, "+a2+")\n";
+					   }
+					}
+				}
+				//ham bac 3
+				else if(rf2.isSelected())
+				{
+					if (b==0)
+						string="ban da chon sai kieu ham so.de nghi ban chon ham 1 de co ket qua khao sat";
+					
+					else
+					{
+						string="Ham so:  y= "+b+"*x^3  +"+c+"x^2 +"+d+"*x +"+e+"\n";
+						//tap xac dinh
+						string+="1) Tap xac dinh:\n    D=R\n";
+						//dao ham
+						string+="2) Dao ham:\n    y'="+3*b+"x^2 + "+2*c+"x + "+d+"\n";
+						string+="    y''="+6*b+"x + "+2*c+"\n";
+						//cuc tri
+						string+="3) Cuc tri:\n";
+						double dd,x1,x2,y1;
+						   dd=c*c-3*b*d; //delta' cua dao ham bac nhat
+				           x1=(-c+Math.sqrt(dd))/(3*b); //nghiem x1>x2
+						   x2=(-c-Math.sqrt(dd))/(3*b);
+						   y1=6*b*x1+2*c;   //neu y2<0 thi x1 la do thi loi,nguoc lai la lom
+						   String str1,str2,str3,str4;
+						if (dd<0)
+						{
+							string+="ham so khong co cuc tri";
+						}
+						else
+						{
+							if (y1<0)
+							{
+								str1=""+x1;
+								str2=""+b*x1*x1*x1+c*x1*x1+d*x1+e;
+								str3=""+x2;
+								str4=""+b*x2*x2*x2+c*x2*x2+d*x2+e;
+							}
+							else
+							{
+								str3=""+x1;
+								str4=""+b*x1*x1*x1+c*x1*x1+d*x1+e;
+								str1=""+x2;
+								str2=""+b*x2*x2*x2+c*x2*x2+d*x2+e;
+							}
+							string+="ham so co 2 cuc tri la:\n";
+							string+="cuc dai la diem A("+str1+","+str2+")    Cuc tieu la diem B("+str3+","+str4+")\n";;							
+						}
+						//diem uon
+						double a2=-c/(3*b);//toa do x cua diem uon
+						double y;          //toa do y cua diem uon
+						y=b*(a2)*(a2)*(a2)+c*(a2)*(a2)+d*(a2)+e;
+						string+="4) Diem uon la nghiem cua phuong trinh y''=0:\n     diem uon U("+a2+","+y+")\n";
+						//khoang bien thien
+						string+="5) Khoang bien thien:\n";
+						if(dd>0) //neu co cuc tri
+						{
+							if (b>0)
+							{
+								string+="     Ham so dong bien tren: (-vo cung,"+x2+") hop voi ("+x1+",+vo cung)\n";
+								string+="     Ham so nghich bien tren: ("+x2+","+x1+")\n";
+							}
+							else
+							{
+								string+="     Ham so nghich bien tren: (-vo cung,"+x2+") hop voi ("+x1+",+vo cung)\n";
+								string+="     Ham so dong bien tren: ("+x2+","+x1+")\n";
+							}
+						}
+						else //neu khong co cuc tri
+						{
+							if (b>0)
+								string+=" ham so dong bien tren R\n";
+							else
+								string+=" ham so nghich bien tren R\n";
+						}
 					}
 				}
 				
-				
+				//Ham bac 4 trung phuong
+				else if(rf5.isSelected())
+				{
+					String str1,str2;
+					if (a==0)
+						string+="ban da sai kieu ham so.";
+					else
+					{
+						string="                 Ham so:  y= "+a+"*x^4  +"+c+"x^2 +"+e+"\n";
+					    //tap xac dinh
+						string+="1) Tap xac dinh:\n    D=R\n";
+						//dao ham
+						string+="2) Dao ham:\n    y'="+4*a+"x^3 + "+2*c+"x \n";
+						string+="    y''="+12*a+"x^2 + "+2*c+"\n";
+						//cuc tri va diem uon
+						string+="3)Cuc tri:\n";
+						if ((-c/(2*a))<=0)
+						{
+							string+="ham so co 1 cuc tri";
+							if (a>0)
+							{
+								string+= " la cuc tieu    A(0,"+e+")\n";
+							}
+							else
+							{
+								string+= " la cuc dai    A(0,"+e+")\n";
+							}
+							string+="4) Diem uon la nghiem cua phuong trinh y''=0 \n         => Ham so khong co diem uon\n";
+						}
+						else
+						{
+							string+="Ham so co 3 cuc tri.\n";
+							double dd,x1;
+							x1=-Math.sqrt(-c/(2*a));
+							if(a<0)
+							{
+								str1="dai";
+								str2="tieu";
+							}
+							else
+							{
+								str1="tieu";
+								str2="dai";
+							}
+							string+="Cuc "+str1+" la diem A("+x1+","+(a*x1*x1*x1*x1+c*x1*x1+e)+")   va diem B("+(-x1)+","+(a*x1*x1*x1*x1+c*x1*x1+e)+")\n";
+							string+="Cuc "+str2+" la diem C(0,"+e+")\n";
+							string+="4) Diem uon la nghiem cua phuong trinh y''=0 \n        => Ham so co 2 diem uon la:\n";
+					        x1=Math.sqrt(-c/(6*a));
+							string+="        diem U1("+x1+","+a*x1*x1*x1*x1+c*x1*x1+e+")      va U2("+-x1+","+a*x1*x1*x1*x1+b*x1*x1+c+")\n";
+						}
+						//khoang bien thien
+						string+="5) khoang bien thien:\n";
+						if ((-c/(2*a))<0)
+						{
+							if (a>0)
+							{
+								string+="     Ham so nghich bien tren: (-vo cung,0)\n     Ham so dong bien tren (0,+vo cung)\n";		
+							}
+							else
+							{
+								string+="     Ham so dong bien tren: (-vo cung,0)\n     Ham so nghich bien tren (0,+vo cung)\n";
+							}
+						}
+						else
+						{
+							double x1;
+							x1=-Math.sqrt(-b/(2*a));
+							if (a>0)
+							{
+								str1="nghich";
+								str2="dong";
+							}
+							else
+							{
+								str1="dong";
+								str2="nghich";
+							}
+							string+="     Ham so "+str1+" bien tren (-vo cung,"+x1+") va (0,"+-x1+")\n";
+							string+="     Ham so "+str2+" bien tren ("+x1+",0)  va ("+-x1+",+vo cung)\n";
+						}
+					}
+				}
+				//ham bac 2 tren bac nhat
+				else if(rf4.isSelected())
+				{
+					String str1,str2,str3,str4;
+					if (c==0);
+					{
+						if ((d*g-e*f)==0)
+						{
+							string="ham so bi suy bien thanh ham hang \n  y="+d/f+"\n";
+						}
+						else
+						
+							string+="ham so bi suy bien thanh ham bac 1 tren bac nhat,\nde nghi ban chon ham bac 1 tren bac 1 de co ket qua dung\n";
+					}
+					else
+					{
+						if((c*g*g-f*d*g+e*f*f)==0)
+						{
+							string+="ham so bi suy bien thanh ham 1:\r\n y="+c/f+"x + "+(d/f-c*g/f/f)+",de nghi ban chon ham 1 de co ket qua dung\n";
+						}
+						else
+						{
+							string="    y=("+c+"x^2 + "+d+"x + "+e+")/("+f+"x + "+g+")\n";
+							//tap xac dinh
+							string+="1) Tap xac dinh:  D=R|{"+-g/f+"}\r\n";
+							//dao ham
+							string+="2) Dao ham:\r\n     y'=("+c*f+"*x^2 + "+2*c*g+"*x + "+(d*g-e*f)+")/("+f+"*x + "+g+")^2\n";
+							//tiem can
+							string+="3) Tiem can:\r\n   ham so y=f(x) co the phan tich thanh\r\n     y="+c/f+"x + "+(d/f-c*g/(f*f))+"+ "+(e-d*g/f+c*g*g/(f*f))+"/("+f+"x + "+g+")\n";
+							string+="   => Do thi ham so co tiem can xien la duong thang y="+c/f+"*x + "+(d/f-c*g/(f*f))+"\n";
+							string+="   Do thi ham so co tiem can dung la duong thang x="+-f/e+"\n";
+							//cuc tri
+							string+="4) Cuc tri:\n";
+							float dt,x1 = 0,x2 = 0,y1,y2;
+							dt=(c*c*g*g)-c*f*(d*g-e*f);//delta' cua tu so dao ham
+							
+							if (dt>0)
+							{
+								//float a1,a2,b1,b2;
+								x1=(float) ((-c*g-Math.sqrt(dt))/(c*f));
+								x2=(float) ((-c*g+Math.sqrt(dt))/(c*f));
+								y1=(c*x1*x1+d*x1+e)/(f*x1+g);
+								y2=(c*x2*x2+d*x2+e)/(f*x2+g);
+								if (x1>x2)
+								{
+									float tg;
+									tg=x2;
+									x2=x1;
+									x1=tg;
+									tg=y2;
+									y2=y1;
+									y1=tg;
+								}
+								if (y1<y2)
+								{
+									str1=x1+"";
+									str2=y1+"";
+									str3=x2+"";
+									str4=y2+"";
+								}
+								else
+								{
+									str3=x1+"";
+									str4=y1+"";
+									str1=x2+"";
+									str2=y2+"";
+								}
+								string+="Do thi ham so co 2 cuc tri la:\r\n   Diem cuc dai la A("+str1+","+str2+")   cuc tieu la B("+str3+","+str4+")\n";
+							}
+							else
+							{
+								string+="Ham so khong co cuc tri\n";
+							}
+							//bien thien
+							str1=x1+"";
+							str2=-g/f+"";
+							str3=x2+"";
+							string+="5) Bien thien:\n";
+							if(dt>0)
+							{
+								if ((c/f)>0)
+								{
+									string+="   Ham so dong bien tren (-vo cung,"+str1+") va ("+str3+",+vo cung)\n";
+									string+="   Ham so nghich bien tren ("+str1+","+str2+") va ("+str2+","+str3+")\n";
+								}
+								else
+								{
+									string+="   Ham so nghich bien tren (-vo cung,"+str1+") va ("+str3+",+vo cung)\r\n";
+									string+="   Ham so dong bien tren ("+str1+","+str2+") va ("+str2+","+str3+")\r\n";
+								}
+							}
+							else
+							{
+								if ((c/f<0))
+								{
+									string+="   Ham so dong bien tren tap xac dinh D\n";
+								}
+								else
+								{
+									string+="   Ham so nghich bien tren tap xac dinh D\n";
+								}
+							}
+						}
+					}
+				}
+			//}
+			// ham bac nhat tren bac nhat
+			else if (rf5.isSelected())
+			{
+				if ((d*g-e*f)==0)
+				{
+					string="ham so bi suy bien thanh ham hang \r\n  y="+d/f+"\n";
+				}
+				else
+				{
+					string="       y=("+d+"x + "+e+")/("+f+"x + "+g+")\n";
+					//txd
+					string+="1) Tap xac dinh:    D=R|{"+-g/f+"}\n";
+					//dao ham
+					string+="2) Dao ham:\n    y'="+(d*g-e*f)+"/("+f+"x + "+g+")^2\n";
+					//tiem can
+					string+="3) Tiem can:\n";
+					string+="   Tiem can ngang la duong thang: y="+d/f+"\r\n";
+					string+="   Tiem can dung la duong thang:  x="+-g/f+"\r\n";
+					//khoang bien thien
+					if ((d*g-e*f)<0)
+						string+="4) Khoang bien thien:\r\n    Ham so nghich bien tren Tap xac dinh D\r\n";
+					else
+						string+="4) Khoang bien thien:\r\n    Ham so dong bien tren Tap xac dinh D\r\n";
+				}
+			}
+			te.setText(string);
 			}
 		});
+		btncancle=new JButton("huy");
+		btncancle.setBounds(950, 610, 100, 40);
+		this.add(btncancle);
+		btncancle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				del=true;
+				te.setText("");
+			}
+		});
+		
+		t=new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				mp=new mypanel() {
+					
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+					//	tttx.setText(String.valueOf(this.getx()/30-10));
+						//ttty.setText(String.valueOf(-this.gety()/30+10));
+					}
+				};
+				mp.setBounds(30, 30, 600, 500);
+				mp.setBackground(Color.white);
+				ks.add(mp);
+				mp.setcolor(Color.black);//dat mau mac dinh khi ve do thi
+				while (true)
+				{
+					int scalex=30;
+//					 int scaley=30;
+//					 int ox=300;
+//					 int oy=300;
+					 vetruc();
+					 if(!function.isEmpty())
+					 {
+						 for(int i=0;i<function.size();i++)
+						 {
+							 String s=function.get(i);
+							 ve(s,mp, mp.getcolor());
+							 try {
+								 Thread.sleep(100);
+							 } catch (InterruptedException e) {
+								 e.printStackTrace();
+							 }
+						 }
+						 if(del==true)
+						 {
+							String s=function.get(function.size()-1);
+							Color c=mp.getcolor();
+							ve(s,mp,Color.white);
+							function.remove(function.size()-1);
+							del=false;
+							mp.setcolor(c);
+						 }
+					 }
+				}
+			}
+		});
+		t.start();
+	}
+	public void vetruc(){
+		Color c=mp.getcolor(); //luu mau sac cua do thi 
+		mp.setcolor(Color.black);//chuyen sang mau den de ve truc 
+		mp.drawline(0, oy, 600, oy);
+		mp.drawline(595, oy-5, 600, oy);
+		mp.drawline(595, oy+5, 600, oy);
+		mp.drawline(ox, 0, ox, 500);
+		mp.drawline(ox, 0, ox+5, 5);
+		mp.drawline(ox, 0, ox-5, 5);
+		mp.drawstring("x", 570, oy-30);
+		mp.drawstring("y", ox+30, 30);
+		for(int x=0;x<570;x=x+scalex) {
+			if((x-ox)%scalex==0)
+			{
+				mp.drawline(x, oy-1, x, oy+1);
+				mp.drawstring(String.valueOf(x/scalex-oy/scalex), x-10, oy+20);
+			}
+		}
+		for(int x=0;x<500;x=x+30){
+			if((x-oy)%30==0&&x!=oy)
+			{
+				mp.drawline(ox-1, x, ox+1, x);
+				mp.drawstring(String.valueOf((oy-x)/scaley), ox+5, x);
+			}
+		}
+		mp.setcolor(c);//chuyen sang mau ve do thi
 	}
 
 
