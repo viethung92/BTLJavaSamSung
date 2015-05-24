@@ -2,6 +2,12 @@ package baitaplon;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
@@ -33,10 +39,25 @@ public class myframe extends JFrame{
 	public static myframe myfr;
 	public Point po=new Point();
 	
-	public myframe(String string) {
-		// TODO Auto-generated constructor stub
+	public float x(float k){
+		return (k-ox)/scalex;
 	}
-
+	public float y(String s,float m){
+		
+		return Main.kq(m,s);
+	}
+	public int yp(float l){
+		return (int)(-l*scaley+oy);
+	}
+	public void ve(String s,mypanel p,Color c){
+		p.setcolor(c);
+		for(x=0;x<600;x++)
+		{
+			p.drawline(x,yp(y(s,x(x))),x+1,yp(y(s,x(x+1))));
+		}
+		
+	}
+	
 	public void vetruc(){
 		Color c=mp.getcolor(); //luu mau sac cua do thi 
 		mp.setcolor(Color.black);//chuyen sang mau den de ve truc 
@@ -65,4 +86,174 @@ public class myframe extends JFrame{
 		mp.setcolor(c);//chuyen sang mau ve do thi
 	}
 
+	public myframe(String s){
+		super(s);
+		this.setSize(1000, 700);
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		myfr=this;
+		
+		function=new ArrayList<>();
+		clrc =new JColorChooser();
+		clrc.setBounds(650, 30, 300, 300);
+		this.add(clrc);
+		clrc.setColor(Color.black);
+		clrc.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				mp.setcolor(clrc.getColor());
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+			}
+		});
+		
+		draw=new JButton("draw");
+		draw.setBounds(650, 400, 100, 40);
+		this.add(draw);
+		draw.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				function.add(str);
+			}
+		});
+		
+		cancle=new JButton("delete");
+		cancle.setBounds(850, 400, 100, 40);
+		this.add(cancle);
+		cancle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+
+				if(!function.isEmpty())
+				{
+					del=true;
+				}
+				vetruc();
+			}
+		});
+				
+		type=new ButtonGroup();
+		type.add(b1);
+		type.add(b2);
+		
+		ly=new JLabel("y=");
+		ly.setBounds(180, 600, 100, 20);
+		this.add(ly);
+		
+		ta=new JTextField("0");
+		ta.setBounds(200, 600, 400, 40);
+		this.add(ta);
+		ta.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				str=ta.getText().toString();
+			}
+			
+			@Override
+			public void focusGained(FocusEvent arg0) {
+
+			}
+		});
+		
+		ltt=new JLabel("selected point (x:y)",(int) CENTER_ALIGNMENT);
+		ltt.setBounds(730, 430, 150, 40);
+		this.add(ltt);
+		
+		tttx=new JTextField();
+		tttx.setBounds(640, 470, 150, 40);
+		tttx.setText("0");
+		this.add(tttx);
+		
+		ttty=new JTextField();
+		ttty.setBounds(820, 470, 150, 40);
+		ttty.setText("0");
+		this.add(ttty);
+		Thread t=new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				mp=new mypanel() {
+
+					@Override
+					public void mouseEntered(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseExited(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mousePressed(MouseEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void mouseReleased(MouseEvent arg0) {
+						tttx.setText(String.valueOf(this.getx()/30-10));
+						ttty.setText(String.valueOf(-this.gety()/30+10));
+					}
+					
+				};
+				mp.setBounds(30, 30, 600, 500);
+				mp.setBackground(Color.white);
+				myfr.add(mp);
+				mp.setcolor(Color.black);//dat mau mac dinh khi ve do thi
+				while (true)
+				{
+					vetruc();
+					if(!function.isEmpty())
+						{
+							for(int i=0;i<function.size();i++)
+							{
+								String s=function.get(i);
+								ve(s,mp, mp.getcolor());
+								try {
+									Thread.sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+							if(del==true)
+							{
+								String s=function.get(function.size()-1);
+								Color c=mp.getcolor();
+								ve(s,mp,Color.white);
+								function.remove(function.size()-1);
+								del=false;
+								mp.setcolor(c);
+							}
+						}
+				}
+			}
+		});
+		t.start();
+	}
 }
