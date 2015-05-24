@@ -3,6 +3,7 @@ package baitaplon;
 import java.awt.Color;
 import java.awt.Point;
 import java.util.ArrayList;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
@@ -32,6 +33,10 @@ public class myframe extends JFrame{
 	public static myframe myfr;
 	public Point po=new Point();
 	
+	public myframe(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void vetruc(){
 		Color c=mp.getcolor(); //luu mau sac cua do thi 
 		mp.setcolor(Color.black);//chuyen sang mau den de ve truc 

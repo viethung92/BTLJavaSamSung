@@ -405,7 +405,7 @@ public class khaosat extends JFrame {
 				
 				//Hien phan khao sat
 				String string = "";
-				//bac 2
+				//bac 
 				if(rf1.isSelected())
 				{
 					if (c==0)
