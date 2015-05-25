@@ -5,7 +5,7 @@ import java.util.Stack;
 
 public class Main {
 	static StringBuilder str;
-	static float x;
+	static float x=0;
 	static float kq;
 	static ArrayList<StringBuilder> input = new ArrayList<StringBuilder>();
 	static ArrayList<StringBuilder> output = new ArrayList<StringBuilder>();
@@ -105,7 +105,7 @@ public class Main {
 		int index = -1;
 		for (int i = 0; i < s.length(); i++) {
 			if (s.charAt(i) == c) {
-				i = index;
+				index = i;
 				break;
 			}
 		}
@@ -121,10 +121,10 @@ public class Main {
 		int i = 0;
 		while (findIndex(s1, ' ') != -1) {
 			StringBuilder s2 = new StringBuilder();
-			s2.append(s.substring(0, findIndex(s1, ' ') + 1));
+			s2.append(s1.substring(0, findIndex(s1, ' ') + 1));
 			s2.deleteCharAt(s2.length() - 1);
 			sb.add(i, s2);
-			s2.delete(0, findIndex(s1, ' ') + 1);
+			s1.delete(0, findIndex(s1, ' ') + 1);
 			i++;
 
 		}
@@ -143,6 +143,7 @@ public class Main {
 		case '/':
 		case '^':
 			return 2;
+		case '0':
 		case '1':
 		case '2':
 		case '3':
@@ -178,15 +179,15 @@ public class Main {
 		}
 		// them so 0 vao truoc cac so am
 		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) == 'i' && str.charAt(i - 1) == '(') {
+			if (str.charAt(i) == '-' && str.charAt(i - 1) == '(') 
 				str.insert(i, '0');
-			}
+			
 		}
 		// them dau cach de phan biet cac toan tu va dau ngoac
 		for (int i = 0; i < str.length(); i++) {
 			switch (kiemtra(str.charAt(i))) {
 			case 1: {
-				if (i != 0 && kiemtra(str.charAt(i - 1)) != -1)
+				if (i != 0 && kiemtra(str.charAt(i - 1)) != 1)
 					str.insert(i, ' ');
 				i++;
 				break;
@@ -213,7 +214,7 @@ public class Main {
 		// them dau cach vao sau cac toan hang va dau ngoac
 		for (int i = 0; i < str.length(); i++) {
 			switch (kiemtra(str.charAt(i))) {
-			case 1: {
+			case 1: {  //ky tu
 				if (i != str.length() - 1 && str.charAt(i + 1) != ' '
 						&& kiemtra(str.charAt(i + 1)) != 1) {
 					str.insert(i + 1, ' ');
@@ -235,9 +236,9 @@ public class Main {
 					str.insert(i + 1, ' ');
 					i++;
 				}
-				break;
-			}
-			default:
+				
+			} break;
+			default: //so
 				break;
 			}
 		}
@@ -285,7 +286,7 @@ public class Main {
 				break;
 			case 2: {
 				stack.push(input.get(i));
-			}
+			} break;
 			case 3: {
 				StringBuilder t = new StringBuilder();
 				do {
@@ -302,7 +303,8 @@ public class Main {
 					}
 					if (exit)
 						break;
-				} while (!stack.isEmpty());
+				} 
+				while (!stack.isEmpty());
 			}
 				break;
 
@@ -333,7 +335,7 @@ public class Main {
 					float x1, x2, x3;
 					x1 = Float.valueOf(stack.pop().toString());
 					x2 = Float.valueOf(stack.pop().toString());
-					x3 = x1 + x2;
+					x3 = x2 + x1;
 					stack.push(new StringBuilder(String.valueOf(x3)));
 				}
 					break;
@@ -341,7 +343,7 @@ public class Main {
 					float x1, x2, x3;
 					x1 = Float.valueOf(stack.pop().toString());
 					x2 = Float.valueOf(stack.pop().toString());
-					x3 = x1 - x2;
+					x3 = x2 - x1;
 					stack.push(new StringBuilder(String.valueOf(x3)));
 				}
 					break;
@@ -349,7 +351,7 @@ public class Main {
 					float x1, x2, x3;
 					x1 = Float.valueOf(stack.pop().toString());
 					x2 = Float.valueOf(stack.pop().toString());
-					x3 = x1 * x2;
+					x3 = x2 * x1;
 					stack.push(new StringBuilder(String.valueOf(x3)));
 				}
 					break;
@@ -357,7 +359,7 @@ public class Main {
 					float x1, x2, x3;
 					x1 = Float.valueOf(stack.pop().toString());
 					x2 = Float.valueOf(stack.pop().toString());
-					x3 = x1 / x2;
+					x3 = x2 / x1;
 					stack.push(new StringBuilder(String.valueOf(x3)));
 				}
 					break;
@@ -365,7 +367,7 @@ public class Main {
 					float x1, x2, x3;
 					x1 = Float.valueOf(stack.pop().toString());
 					x2 = Float.valueOf(stack.pop().toString());
-					x3 = (float) Math.pow(x1, x2);
+					x3 = (float) Math.pow(x2, x1);
 					stack.push(new StringBuilder(String.valueOf(x3)));
 				}
 					break;
